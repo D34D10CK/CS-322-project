@@ -1,9 +1,9 @@
 #read the characters column
-$characters = (Import-Csv .\story.csv -Encoding utf8 | select 'characters').characters
+$characters = (Import-Csv .\story.csv -Encoding utf8 | where {$_.characters -ne '\N'} | select 'characters').characters
 #remove the comments
 $characters = $characters -replace '\(.*\)', ''
 #remove nulls
-$characters = $characters | Select-String -Pattern '\\N' -NotMatch
+#$characters = $characters | Select-String -Pattern '\\N' -NotMatch
 #remove [] for easier parsing later
 $characters = $characters -replace '\[', ';' -replace '\]', ''
 #removing the remaining [] and ()
