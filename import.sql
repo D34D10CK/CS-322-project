@@ -110,11 +110,12 @@ fields terminated by ','
 lines terminated by '\r\n'
 ignore 1 lines;
 
-load data infile 'story-characters.tx'
+load data infile 'story-characters.txt'
 ignore 
-into table brand_groups
-character set stories_characters
+into table stories_characters
+character set utf8
 fields terminated by ','
+enclosed by '"'
 lines terminated by '\r\n'
 ignore 1 lines;
 
@@ -176,7 +177,7 @@ ignore 1 lines;
 
 load data infile 'stories_script.txt'
 ignore 
-into table stories_pencils
+into table stories_script
 character set utf8
 fields terminated by ','
 lines terminated by '\n'

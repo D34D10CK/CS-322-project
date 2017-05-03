@@ -15,4 +15,5 @@ $characters = $characters -replace ':', ''
 #one character/group per line
 $characters = $characters.split(';')
 #remove doubles (ultra long)
-$characters | foreach{$_.Trim()} | sort -unique | Out-File characters.txt -Encoding utf8
+#$characters | foreach{$_.Trim()} | sort -unique | Out-File characters.txt -Encoding utf8
+$characters | foreach{$_.Trim()} | Out-File characters.txt -Encoding utf8
