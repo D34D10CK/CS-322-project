@@ -110,12 +110,11 @@ fields terminated by ','
 lines terminated by '\r\n'
 ignore 1 lines;
 
-load data infile 'story-characters.txt'
+load data infile 'story-characters.tx'
 ignore 
 into table stories_characters
 character set utf8
 fields terminated by ','
-enclosed by '"'
 lines terminated by '\r\n'
 ignore 1 lines;
 
@@ -127,7 +126,7 @@ fields terminated by ','
 lines terminated by '\n'
 ignore 1 lines;
 
-load data infile 'stories_editors.txt'
+load data infile 'stories_editing.txt'
 ignore 
 into table stories_editors
 character set utf8
