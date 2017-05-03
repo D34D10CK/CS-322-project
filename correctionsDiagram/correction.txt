@@ -1,0 +1,8 @@
+We have modified our first deliverable and some of our database design according to the feedback we got from you.
+-We delete the ternary relationship between Publisher, Indicia_Publisher and Country (if they come from different countries).
+-The reprint relationships are now Many-to-Many relationships according to the data
+-A series is published for exactly one country, has only one publication type and is written in exactly one language as it is defined in the data
+-We separate 'genre' and 'editing' as two entity sets linked with the story entity through a relationship
+-We realize that a story can only be published in one issue and can only have one type that is why we decide to keep 'issue_id' and 'type_id' as attributes of the story entity and not create separate ones.
+-We represent 'first_issue' and 'last_issue' as separate 1-to-1 relationships.
+-We represent 'featured character' and 'all other characters' using different realtionships. Thus different tables
