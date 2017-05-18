@@ -160,7 +160,6 @@ CREATE TABLE `issues` (
   `price` varchar(255) DEFAULT NULL,
   `page_count` int(11) DEFAULT NULL,
   `indicia_frequency` varchar(255) DEFAULT NULL,
-  `editing` text,
   `notes` text,
   `isbn` varchar(255) DEFAULT NULL,
   `valid_isbn` varchar(255) DEFAULT NULL,
@@ -174,6 +173,23 @@ CREATE TABLE `issues` (
   KEY `issues_series_fk_idx` (`series_id`),
   CONSTRAINT `issues_indicia_publishers_fk` FOREIGN KEY (`indicia_publisher_id`) REFERENCES `indicia_publishers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `issues_series_fk` FOREIGN KEY (`series_id`) REFERENCES `series` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `issues_editors`
+--
+
+DROP TABLE IF EXISTS `issues_editors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `issues_editors` (
+  `issue_id` int(11) NOT NULL,
+  `editor_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`issue_id`,`editor_name`),
+  KEY `issues_editors_editors_fk_idx` (`editor_name`),
+  CONSTRAINT `issues_editors_editors_fk` FOREIGN KEY (`editor_name`) REFERENCES `editors` (`editor_name`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `issues_editors_issues_fk` FOREIGN KEY (`issue_id`) REFERENCES `issues` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -495,4 +511,4 @@ CREATE TABLE `story_types` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-03 11:38:45
+-- Dump completed on 2017-05-18 13:25:09
