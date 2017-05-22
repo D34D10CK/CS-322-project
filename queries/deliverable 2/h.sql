@@ -3,7 +3,7 @@ SELECT
 FROM
     stories
         INNER JOIN
-    stories_feature
+    stories_feature on stories.id = stories_feature.story_id
 WHERE
     stories_feature.character_id <> 'batman'
         AND character_id IN (SELECT 

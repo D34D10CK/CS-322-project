@@ -115,7 +115,7 @@ ignore
 into table stories_characters
 character set utf8
 fields terminated by ','
-lines terminated by '\r\n'
+lines terminated by '\n'
 ignore 1 lines;
 
 load data infile 'stories_colors.txt'

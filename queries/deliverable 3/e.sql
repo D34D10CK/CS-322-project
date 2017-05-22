@@ -1,4 +1,3 @@
-
 SELECT 
     publishers.name,
     SUBSTRING_INDEX(GROUP_CONCAT(DISTINCT languages.name

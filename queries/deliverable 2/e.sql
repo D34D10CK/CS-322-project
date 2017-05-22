@@ -8,4 +8,4 @@ FROM
     FROM
         indicia_publishers
     WHERE
-        name LIKE '%DC comics%') AS table1 ON series.publisher_id = table1.publisher_id
+        indicia_publishers.name LIKE '%DC comics%') AS table1 ON series.publisher_id = table1.publisher_id

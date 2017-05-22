@@ -1,4 +1,3 @@
-
 SELECT 
     languages.name, COUNT(*) AS number
 FROM
