@@ -1,25 +1,39 @@
-SELECT DISTINCT
-    series.name, stories.title, stories.type_id, count(*)
+SELECT 
+    series.name
 FROM
-    series
+    (SELECT 
+        series_id
+    FROM
+        stories
+    INNER JOIN issues ON issues.id = stories.issue_id
+    WHERE
+        stories.type_id <> (SELECT 
+                stories.type_id
+            FROM
+                stories
+            GROUP BY stories.type_id
+            ORDER BY COUNT(*) DESC
+            LIMIT 1)
+    GROUP BY series_id
+    HAVING COUNT(*) = (SELECT 
+            MAX(c)
+        FROM
+            (SELECT 
+            COUNT(*) AS c
+        FROM
+            (SELECT 
+            stories.issue_id
+        FROM
+            stories
+        WHERE
+            stories.type_id <> (SELECT 
+                    stories.type_id
+                FROM
+                    stories
+                GROUP BY stories.type_id
+                ORDER BY COUNT(*) DESC
+                LIMIT 1)) AS a
+        INNER JOIN issues ON issues.id = a.issue_id
+        GROUP BY issues.series_id) AS b)) AS a
         INNER JOIN
-    issues ON series.id = issues.series_id
-        INNER JOIN
-    stories ON stories.issue_id = issues.id
-group by series.name, stories.title, stories.type_id 
-  
-
-#WHERE
- #   stories.type_id <> (SELECT 
-  #          type_id
-   #     FROM
-    #        stories
-     #   GROUP BY type_id
-      #  HAVING COUNT(*) = (SELECT 
-       #         MAX(c)
-        #    FROM
-         #       (SELECT 
-          #          type_id, COUNT(*) AS c
-           #     FROM
-            #        stories
-             #   GROUP BY type_id) AS a))
+    series ON series.id = a.series_id
